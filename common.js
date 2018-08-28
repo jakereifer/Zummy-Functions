@@ -63,32 +63,30 @@ async function getAuthData(headers) {
 
 //Returns todays date (PT) as a string (yyyy-mm-dd)
 const getToday = () => {
-    // const today = new Date().toLocaleDateString();
-    // return getString(today);
-    return "2018-08-28";
+    const today = new Date().toLocaleDateString();
+    return getString(today);
 }
 
 //Returns the given date as a string (yyyy-mm-dd)
 const getDate = (date) => {
-    /*date = new Date(date);
+    date = new Date(date);
     if (isNaN(Date.parse(date))) {
         return undefined;
     }
     console.log(Date.parse(date));
-    date = date.toLocaleDateString("ko-KR",
+    date = date.toLocaleDateString("en-CA",
         {
             timeZone: 'Europe/London'
         }
     );
-    return getString(date);*/
-    return "2018-08-20";
+    return getString(date);
 }
 
 //Returns the next date of the provided date in string format (yyyy-mm-dd)
 const getNextDate = (date) => {
     let today = new Date(date);
     today = today.setDate(today.getDate() + 1);
-    today = new Date(today).toLocaleDateString("ko-KR",
+    today = new Date(today).toLocaleDateString("en-CA",
         {
             timeZone: 'Europe/London'
         }
