@@ -65,7 +65,7 @@ async function getAuthData(headers) {
 const getToday = () => {
     const today = new Date().toLocaleDateString("en-CA",
     {
-        timeZone: 'Europe/London'
+        timeZone: 'America/Los_Angeles'
     });
     return getString(today);
 }
