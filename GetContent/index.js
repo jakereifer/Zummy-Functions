@@ -1,7 +1,7 @@
 const { getCollection, toArray, imageUrl, getToday, getDate } = require('../common.js');
 
 module.exports = async (context) => {
-    //try {
+    try {
         const today = getToday();
         //if there is no date given in the url path
         if (!context.bindingData.day) {
@@ -45,10 +45,10 @@ module.exports = async (context) => {
             }
             
         }
-    // } catch (error) {
-    //     console.log(error);
-    //     context.res = { status: 404, body: error.toString() };
-    // }
+    } catch (error) {
+        console.log(error);
+        context.res = { status: 404, body: error.toString() };
+    }
 };
 
 //Returns the documents at the given date as well as the previous document (if applicable)
