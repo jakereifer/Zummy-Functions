@@ -54,8 +54,8 @@ async function getAuthData(headers) {
         let record = {
             name: parsedAuth.name,
             uid: parsedAuth.uid,
-            isOwner: parsedAuth.isowner == "true",
-            isContributor: parsedAuth.iscontributor == "true"
+            isOwner: parsedAuth.isowner == true,
+            isContributor: parsedAuth.iscontributor == true
         }
         return record;
     }
