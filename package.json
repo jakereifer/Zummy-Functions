@@ -1,0 +1,38 @@
+{
+  "name": "zummy-functions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "azure-storage": "^2.10.1",
+    "blob": "0.0.4",
+    "btoa": "^1.2.1",
+    "es6-promise": "^4.2.4",
+    "form-data": "^2.3.2",
+    "into-stream": "^3.1.0",
+    "isomorphic-fetch": "^2.2.1",
+    "mongodb": "^3.1.1",
+    "parse-multipart": "git+https://github.com/jakereifer/parse-multipart.git",
+    "query-string": "^6.1.0",
+    "sinon": "^6.1.4",
+    "stream-length": "^1.0.2",
+    "streamifier": "^0.1.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakereifer/Zummy-Functions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakereifer/Zummy-Functions/issues"
+  },
+  "homepage": "https://github.com/jakereifer/Zummy-Functions#readme"
+}

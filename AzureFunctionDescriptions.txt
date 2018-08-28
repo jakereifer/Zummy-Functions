@@ -1,0 +1,10 @@
+List of Azure functions:
+
+/ListContent -> for owners and contributors (filtered). Returns array of records.
+    future: pages, # records per pages
+            combine with GetContent/
+
+
+/GetContent/{day?} -> Returns record info, next?, prev?
+
+/PostContent/{day?} -> Creates/updates records
