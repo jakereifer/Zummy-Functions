@@ -70,7 +70,7 @@ const getToday = () => {
 
 //Returns the given date as a string (yyyy-mm-dd)
 const getDate = (date) => {
-    date = new Date(date);
+    /*date = new Date(date);
     if (isNaN(Date.parse(date))) {
         return undefined;
     }
@@ -80,7 +80,8 @@ const getDate = (date) => {
             timeZone: 'Europe/London'
         }
     );
-    return getString(date);
+    return getString(date);*/
+    return "2018-08-20";
 }
 
 //Returns the next date of the provided date in string format (yyyy-mm-dd)
