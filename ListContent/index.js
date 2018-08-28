@@ -5,7 +5,6 @@ module.exports = async (context, req) => {
         let docs;
         //get authorization data
         const auth = await getAuthData(context.req.headers);
-        //display proper data according to authorization level 
         if (auth.isOwner) {
             docs = await findAllContent(context.req.headers);
         } else if (auth.isContributor) {

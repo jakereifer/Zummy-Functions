@@ -7,7 +7,7 @@ module.exports = async function (context, req) {
         const auth = await getAuthData(context.req.headers);
         const date = context.bindingData.day;
         if (!(auth.isOwner || auth.isContributor))
-            throw new Error("You are not authorized to edit this content!");
+            throw new Error("You are not authorized to delete this content!");
         if (!await dateExists(date, context.req.headers))
             throw new Error("Date does not exist in database");
         if (!(await checkAuthorization(date, auth, context.req.headers)))
@@ -18,6 +18,7 @@ module.exports = async function (context, req) {
         context.res = {
             status: 200,
         }
+        
     } catch (error) {
         context.res = {
             status: 500,

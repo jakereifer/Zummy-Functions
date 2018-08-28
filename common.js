@@ -63,8 +63,9 @@ async function getAuthData(headers) {
 
 //Returns todays date (PT) as a string (yyyy-mm-dd)
 const getToday = () => {
-    const today = new Date().toLocaleDateString();
-    return getString(today);
+    // const today = new Date().toLocaleDateString();
+    // return getString(today);
+    return "2018-08-28";
 }
 
 //Returns the given date as a string (yyyy-mm-dd)
