@@ -63,7 +63,10 @@ async function getAuthData(headers) {
 
 //Returns todays date (PT) as a string (yyyy-mm-dd)
 const getToday = () => {
-    const today = new Date().toLocaleDateString();
+    const today = new Date().toLocaleDateString("en-CA",
+    {
+        timeZone: 'Europe/London'
+    });
     return getString(today);
 }
 
@@ -91,7 +94,6 @@ const getNextDate = (date) => {
             timeZone: 'Europe/London'
         }
     );
-    console.log("today: ", today);
     return getString(today); 
 }
 
