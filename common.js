@@ -91,6 +91,7 @@ const getNextDate = (date) => {
             timeZone: 'Europe/London'
         }
     );
+    console.log("today: ", today);
     return getString(today); 
 }
 
