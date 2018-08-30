@@ -30,5 +30,5 @@ module.exports = async (context, req) => {
 //Edits a document in the database with a particular date
 const updateData = async (data, headers) => {
     (await getCollection(headers))
-        .update({ date: data.date }, data);
+        .update({ date: data.date }, {$set: data});
 };
