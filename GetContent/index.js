@@ -1,8 +1,9 @@
-const { getCollection, toArray, imageUrl, getToday, getDate } = require('../common.js');
+const { getCollection, toArray, imageUrl, getToday, getDate, getAuthData } = require('../common.js');
 
 module.exports = async (context) => {
     try {
         const today = getToday();
+        const auth = await getAuthData(context.req.headers);
         //if there is no date given in the url path
         if (!context.bindingData.day) {
             date = today;
@@ -18,6 +19,7 @@ module.exports = async (context) => {
                 body: {
                     ... docs[0],
                     prev: docs.length > 1 ? docs[1].date : undefined,
+                    next: (await findNext(docs[0].date, context.req.headers, auth)) || undefined,
                 }
             }
         } else {
@@ -26,7 +28,7 @@ module.exports = async (context) => {
             if (date == undefined)
                 throw new Error("Not a valid date.")
             //throw error if date provided is in the future
-            if (date > today)
+            if (date > today && !auth.isOwner)
                 throw new Error("This content is not yet visible!");
             //find the content and the previous date (if applicable)
             let docs = await findDateAndPrev(date, context.req.headers);
@@ -40,7 +42,7 @@ module.exports = async (context) => {
                 body: {
                     ... docs[0],
                     prev: docs.length > 1 ? docs[1].date : undefined,
-                    next: (await findNext(docs[0].date, context.req.headers)) || undefined,
+                    next: (await findNext(docs[0].date, context.req.headers, auth)) || undefined,
                 }
             }
             
@@ -63,11 +65,11 @@ async function findDateAndPrev(date, headers) {
 }
 
 //Returns the date of the next post if applicable
-async function findNext(date, headers) {
+async function findNext(date, headers, auth) {
     const next = await toArray((await getCollection(headers))
         .find({ date: { $gt : getDate(date) }})
         .sort({ date : 1 })
         .limit(1)
     );;
-    return next.length == 0 || next[0].date >= getToday() ? null : next[0].date;
+    return next.length == 0 || (next[0].date >= getToday() && !auth.isOwner) ? null : next[0].date;
 }
