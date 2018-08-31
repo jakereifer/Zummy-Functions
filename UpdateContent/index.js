@@ -12,7 +12,7 @@ module.exports = async (context, req) => {
         if (!await dateExists(date, context.req.headers))
             throw new Error("Date does not exist in database");
         const parts = parseForm(context.req);
-        let record = await createRecord(parts, context.req.headers, date, auth);
+        let record = await createRecord(parts, context.req.headers, date);
         if (!(await checkAuthorization(record.date, auth, context.req.headers)))
             throw new Error('You are not authorized to edit this content!');
         await updateData(record, context.req.headers);

@@ -7,7 +7,7 @@ const getStream = require('into-stream');
 const uri = process.env.COSMOS_DB_CONNECTION_STRING;
 const db = 'zummy';
 const collection = 'dailyPosts';
-const imageUrl = "https://billandjakestorage.blob.core.windows.net/strips/"
+const imageUrl = "https://billandjakestorage.blob.core.windows.net/strips/";
 const connect = promisify(MongoClient.connect);
 
 //Returns and caches the mongo client
@@ -207,7 +207,12 @@ const parseForm = (req) => {
     return Parse(req.body, boundary);
 }
 
+const getImageUrl = (image) => {
+
+    return imageUrl + image;
+}
+
 module.exports = {
-    uri, db, collection, connect, getClient, getCollection, toArray, insertData, imageUrl, getAuthData, getToday, getDate, getNextDate, findData, createRecord, checkData, dateExists, checkAuthorization, submitForm, parseForm
+    uri, db, collection, connect, getClient, getCollection, getImageUrl, toArray, insertData, getAuthData, getToday, getDate, getNextDate, findData, createRecord, checkData, dateExists, checkAuthorization, submitForm, parseForm, imageUrl
 }
 
