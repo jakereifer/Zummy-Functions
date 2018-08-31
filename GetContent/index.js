@@ -1,4 +1,4 @@
-const { getCollection, toArray, imageUrl, getToday, getDate, getAuthData } = require('../common.js');
+const { getCollection, toArray, getToday, getDate, getAuthData, getImageUrl } = require('../common.js');
 
 module.exports = async (context) => {
     try {
@@ -13,7 +13,7 @@ module.exports = async (context) => {
             if (docs.length === 0)
                 throw new Error("No record available");
             
-            docs[0].image = imageUrl + docs[0].image;
+            docs[0].image = getImageUrl(docs[0].image);
             context.res = {
                 headers: { 'Content-Type': 'application/json' },
                 body: {
@@ -36,7 +36,7 @@ module.exports = async (context) => {
             if (docs.length === 0 || docs[0].date != `${date}`)
                 throw new Error("No record available");
 
-            docs[0].image = imageUrl + docs[0].image;
+            docs[0].image = getImageUrl(docs[0].image);
             context.res = {
                 headers: { 'Content-Type': 'application/json' },
                 body: {
@@ -71,5 +71,5 @@ async function findNext(date, headers, auth) {
         .sort({ date : 1 })
         .limit(1)
     );;
-    return next.length == 0 || (next[0].date >= getToday() && !auth.isOwner) ? null : next[0].date;
+    return next.length == 0 || (next[0].date > getToday() && !auth.isOwner) ? null : next[0].date;
 }
